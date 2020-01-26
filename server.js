@@ -36,3 +36,21 @@ app.delete("/api/notes/:id", function (req,res) {
     reWrite();
     res.json(goodNote);
 });
+
+function addId() {
+    goodNote.forEach((element, i) => {
+        element.id = i + 1;
+    });
+};
+let reWrite = () => {
+    let newDB = JSON.stringify(goodNote);
+    fs.writeFile('db.json', newDB, err => { if (err) throw err });
+};
+
+app.get("/api/notes", function (req, res) {
+    return res.json(goodNote);
+});
+
+app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+});
