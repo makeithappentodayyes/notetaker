@@ -63,7 +63,12 @@ var handleNoteSave = function() {
     text: $noteText.val()
   };
 
- 
+  saveNote(newNote).then(function(data) {
+    getAndRenderNotes();
+    renderActiveNote();
+  });
+};
+
 // Use this to Delete Clicked Note
 var handleNoteDelete = function(event) {
   // prevents the click listener for the list from being called when the button inside of it is clicked
